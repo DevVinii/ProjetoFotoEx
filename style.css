@@ -1,0 +1,546 @@
+/* ---------------------------------------------
+   1. VARIÁVEIS GLOBAIS
+--------------------------------------------- */
+:root {
+  --cor-fundo: #1e1e1e;
+  --cor-fonte: #fff;
+  --cor-secundaria: #444044;
+  --cor-terciaria: #111;
+  --cor-quaternaria: #0d0d0d;
+  --font-principal: 'Poppins', sans-serif;
+}
+
+/* ---------------------------------------------
+   2. RESET & TIPOGRAFIA
+--------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* rolagem suave ao clicar nos links da navbar */
+}
+
+body {
+  font-family: var(--font-principal);
+  background-color: var(--cor-fundo);
+  color: var(--cor-fonte);
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------
+   3. LINKS & BOTÕES GENÉRICOS
+--------------------------------------------- */
+a {
+  text-decoration: none;
+  color: var(--cor-fonte);
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #ccc;
+}
+
+a:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease-out;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: var(--cor-fonte);
+  border: 2px solid var(--cor-fonte);
+  font-weight: 600;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--cor-fonte);
+  color: var(--cor-fundo);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* ---------------------------------------------
+   4. ANIMAÇÕES GERAIS (SCROLL/VISUALIZAÇÃO)
+--------------------------------------------- */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------
+   5. NAVBAR
+--------------------------------------------- */
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background: transparent; /* fundo transparente */
+  z-index: 1000;
+}
+
+.logo-img {
+  width: 70px;
+  height: auto;
+}
+
+/* Estilizar lista de navegação */
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav a.nav-link {
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+/* Quando o link estiver ativo (clicado/no alvo), adiciona linha inferior suave */
+nav a.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--cor-fonte);
+  transition: width 0.3s ease;
+}
+
+nav a.nav-link:hover::after,
+nav a.nav-link:focus::after {
+  width: 100%;
+}
+
+/* ---------------------------------------------
+   6. SEÇÃO HERO / CAPA
+--------------------------------------------- */
+.section-um .flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* alinhamento à esquerda */
+  height: 100%;
+  padding: 5vw; /* afastamento da borda esquerda */
+  gap: 8px;
+  max-width: 500px; /* limita a largura para não ficar muito esticado */
+  margin-bottom: 3rem;
+}
+
+.topo-site {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.imagem-fundo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.topo-site::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.2) 70%,
+    transparent
+  );
+  z-index: 1;
+}
+
+.flex {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* agora tudo está centralizado */
+  text-align: center;  /* centraliza texto e botão */
+  gap: 1rem;
+}
+
+.logo-central {
+  width: 160px;
+  margin-top: 1rem;
+}
+ 
+.flex h1 {
+  font-size: 3rem;
+  color: var(--cor-fonte);
+}
+
+/* ---------------------------------------------
+   7. SEÇÃO SOBRE
+--------------------------------------------- */
+.sobre {
+  padding: 6rem 2.5rem;
+  background-color: var(--cor-terciaria);
+}
+
+.sobre-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3.75rem;
+  flex-wrap: wrap;
+}
+
+.sobre-imagem {
+  flex: 1 1 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sobre-img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.sobre-texto {
+  flex: 1 1 400px;
+}
+
+.sobre-texto h2 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+}
+
+.sobre-texto p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------------------------------------------
+   8. SEÇÃO PORTFÓLIO
+--------------------------------------------- */
+.portfolio {
+  background-color: var(--cor-secundaria);
+  padding: 6rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.portfolio-header h2 {
+  font-size: 2.8rem;
+  margin-bottom: 2.5rem;
+  color: var(--cor-fonte);
+}
+
+.portfolio-header p {
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.galeria {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1100px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.foto {
+  width: 250px;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #222;
+  border: 5px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transform-origin: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.foto:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.foto-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.legenda {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: var(--cor-fonte);
+  text-align: left;
+}
+
+.legenda h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.legenda p {
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+/* ---------------------------------------------
+   9. SEÇÃO VÍDEO
+--------------------------------------------- */
+.video-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-fundo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.conteudo-overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 5%;
+}
+
+.conteudo-direita {
+  max-width: 500px;
+  color: var(--cor-fonte);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.icone {
+  font-size: 3rem;
+  color: #ffd700;
+  margin-bottom: 1rem;
+}
+
+.conteudo-direita h2 {
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.conteudo-direita p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------
+   10. GALERIA CRIATIVA
+--------------------------------------------- */
+.galeria-criativa {
+  padding: 3.75rem 1.25rem;
+  background-color: var(--cor-terciaria);
+  text-align: center;
+}
+
+.galeria-criativa h2 {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.mosaico {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.9375rem;
+}
+
+.mosaico .item {
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+
+.mosaico .item:hover img {
+  transform: scale(1.05);
+}
+
+.mosaico-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.mosaico .grande {
+  grid-column: span 2;
+}
+
+.mosaico .alto {
+  grid-row: span 2;
+}
+
+/* ---------------------------------------------
+   11. SEÇÃO CONTATO
+--------------------------------------------- */
+.contato {
+  padding: 5rem 2.5rem;
+  background-color: var(--cor-quaternaria);
+}
+
+.contato-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.contato-imagem {
+  position: relative;
+  flex: 1 1 400px;
+}
+
+.contato-img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.info-contato {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.contato-conteudo {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  justify-content: flex-start;
+  gap: 1.25rem;
+}
+
+.contato-conteudo h2 {
+  font-size: 2.5rem;
+}
+
+.contato-conteudo p {
+  font-size: 1.125rem;
+}
+
+/* ---------------------------------------------
+   12. MEDIA QUERIES
+--------------------------------------------- */
+@media (max-width: 1024px) {
+  .sobre-container,
+  .contato-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .flex {
+    padding-left: 2rem;
+    max-width: 90%;
+  }
+  nav ul {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  .portfolio-header h2 {
+    font-size: 2.2rem;
+  }
+  .portfolio-header p {
+    font-size: 1rem;
+  }
+  .galeria {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .flex {
+    padding-left: 1rem;
+  }
+  .sobre-texto h2 {
+    font-size: 2.5rem;
+  }
+  .sobre-texto p {
+    font-size: 1rem;
+  }
+  .contato-conteudo h2 {
+    font-size: 2rem;
+  }
+  .contato-conteudo p {
+    font-size: 1rem;
+  }
+}
